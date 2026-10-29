@@ -1,33 +1,44 @@
-# Acuce Fluidigm manuscript code and Source Data
+# Acuce Fluidigm manuscript data and code
 
-This repository contains the plotting code and Source Data for the Acuce
-intra-specific interaction / Fluidigm manuscript.
+Public data and code repository for:
+
+**Small and context-dependent effects of intra-specific neighbours on rice disease, growth and leaf transcription**
+
+Current release: **v46** (29 October 2026)
+
+## Manuscript
+
+- `manuscript/fluidigm-paper-v46_20261029.docx`
+- `manuscript/fluidigm-paper-v46_20261029.pdf`
+- `manuscript/response_second_round_v46_20261029.docx`
+- `manuscript/response_second_round_v46_20261029.pdf`
 
 ## Contents
 
-- `code/`: one plotting script per main or supplementary figure, plus the
-  Source Data builder and validation scripts.
-- `source_data/Source_Data.xlsx`: per-panel Source Data worksheets.
-- `source_data/README.md`: sheet layout, figure-to-sheet mapping, and
-  reproducibility notes.
+- `data/source_data/`: Source_Data_v45.xlsx (47 sheets) and its README.
+- `data/processed_inputs/`: four processed analysis input tables.
+- `data/raw_cq/`: three raw Fluidigm Cq exports (Supplementary Data 1-3).
+- `code/analysis/`: data-processing, inoculation/field disease, agronomic trait, expression, and robustness scripts.
+- `code/figure_generation/`: scripts for the final Figures 1-5 and Supplementary Figures S1-S16.
+- `code/reporting/`: manuscript, Source Data and response generation scripts from v31 onwards.
+- `figures/main/`: final main figures in PDF and PNG.
+- `figures/supplementary/`: final Supplementary Figures S1-S16 in PDF and 600 dpi PNG.
+- `tables/`: Supplementary Tables S1-S9.
+- `docs/review_audit_v46.md`: item-by-item audit against the second-round review.
+- `environment/sessionInfo_v46.txt`: R session information.
 
-## Reproduce figures
+## Reproducibility notes
 
-Run commands from the repository root:
+- Figure S2A-S2F are based on pot-level observations and pot-level Sidak letters.
+- The three-stage Fluidigm panel covers tillering, flowering and grain filling.
+- The root-exudate hormone figures from older drafts are not part of the current paper.
+- A matched inoculation-plus-expression experiment was not performed; this is stated as a limitation in the manuscript.
+- Analysis scripts retain the absolute project-root variables from the original working environment; update only those path variables when running elsewhere.
 
-```bash
-Rscript code/Fig1.R
-Rscript code/check_source_data.R
-```
+## Integrity
 
-Figure scripts read `source_data/Source_Data.xlsx` and write rendered files to
-`figures/`. Multi-panel assembly uses the VectorCraft CLI; set
-`VECTORCRAFT_CLI` to its executable path when it is not installed at the
-default location.
+`MANIFEST_MD5_SHA256.tsv` records byte count, MD5 and SHA-256 for every file except the manifest itself.
 
-## Source Data verification
+## Contact
 
-The workbook uses two header rows before each data table. Figure scripts read
-worksheets with `readxl::read_excel(..., skip = 2)`. See
-`source_data/README.md` for the complete panel-to-sheet mapping and validation
-criteria.
+Repository owner: Xiang Li (`lixiang117423`).
