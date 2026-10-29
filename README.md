@@ -13,7 +13,6 @@ Repository for the analyses of:
 - `data/raw_cq/`: three raw Fluidigm Cq exports (Supplementary Data 1-3).
 - `code/analysis/`: data processing, inoculation and field disease, agronomic traits, expression and robustness analyses.
 - `code/figure_generation/`: scripts for final Figures 1-5 and Supplementary Figures S1-S16.
-- `code/reporting/`: archival reporting scripts.
 - `figures/main/`: final main figures in PDF and PNG.
 - `figures/supplementary/`: final Supplementary Figures S1-S16 in PDF and 600 dpi PNG.
 - `tables/`: Supplementary Tables S1-S9.

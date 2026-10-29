@@ -9,6 +9,7 @@
 - Removed the review audit and reporting-history scripts, which are internal
   manuscript-development records rather than public analysis code.
 - Retained the data, figures, tables and analysis code.
+- `MANIFEST_MD5_SHA256.tsv` lists only Git-tracked files.
 
 ## v47 - 2026-10-29
 
