@@ -1,20 +1,20 @@
 # Source Data v45
 
-文件：`Source_Data_v45.xlsx`
+file：`Source_Data_v45.xlsx`
 
-本版按第二轮审稿最终意见调整：
+本版按second_round_reviewfinal意见调整：
 
-- Figure S2A–S2F 改为盆均值数据；S2C–S2F 的字母标记由盆均值模型计算。
+- Figure S2A–S2F 改为盆均值data；S2C–S2F 的字母标记由盆均值模型计算。
 - 删除原根系分泌物激素 Figure S6、S7 对应 sheet。
-- 删除与主图 Figure 5 重复的原 Figure S14 sheet。
-- 删除上述图后，后续补充图连续重编号。
-- 共 47 个 sheet：正文 Fig1–Fig5 的 17 个子图 + 补充图 30 个 sheet。
+- 删除andmain_figures Figure 5 重复的原 Figure S14 sheet。
+- 删除上述图后，后续supplementary_figures连续重编号。
+- 共 47 个 sheet：正文 Fig1–Fig5 的 17 个子图 + supplementary_figures 30 个 sheet。
 
-## 补充图重编号
+## supplementary_figures重编号
 
-| 新编号 | 旧编号 | sheet | 绘图代码（保留原文件名） |
+| 新编号 | 旧编号 | sheet | plotting代码（保留原file名） |
 | --- | --- | --- | --- |
-| Figure S2 | Figure S2 | FigS2a–FigS2h | `17_FigureS2_盆级重出.R`；G/H 沿用 `FigS2.R` |
+| Figure S2 | Figure S2 | FigS2a–FigS2h | `17_FigureS2_pot_level_reanalysis.R`；G/H 沿用 `FigS2.R` |
 | Figure S3 | Figure S3 | FigS3 | `FigS3.R` |
 | Figure S4 | Figure S4 | FigS4 | `FigS4.R` |
 | Figure S5 | Figure S5 | FigS5 | `FigS5.R` |
@@ -32,19 +32,19 @@
 
 Figure S1 为示意图，无 Source Data。
 
-## Figure S2 的统计口径
+## Figure S2 的statistics口径
 
 - 推断单元：盆，`image` 为盆标识。
 - S2A/S2B：`lm(pot mean lesion density ~ group + batch)`。
 - S2C–S2F：逐 disease × focal 拟合
   `lm(pot mean lesion density ~ neighbour + batch)`。
-- 多重比较：Sidak。
-- `FigS2a`、`FigS2b` 的元信息中记录 raw 与 standardised model 的 P 值和盆数。
-- `FigS2c`–`FigS2f` 均含 `emmean` 与 `signif` 列。
+- 多重comparison：Sidak。
+- `FigS2a`、`FigS2b` 的元信息中record raw and standardised model 的 P 值和盆数。
+- `FigS2c`–`FigS2f` 均含 `emmean` and `signif` 列。
 
-## 移除的数据
+## 移除的data
 
 - 旧 FigS6a、FigS6b、FigS7：根系分泌物激素面板，另行成文。
-- 旧 FigS14：与主图 Figure 5 的逐年/交互结果重复。
+- 旧 FigS14：andmain_figures Figure 5 的逐年/交互results重复。
 
-旧 `Source_Data_v32.xlsx` 与旧图文件均保留，不回写。
+旧 `Source_Data_v32.xlsx` and旧图file均保留，不回写。

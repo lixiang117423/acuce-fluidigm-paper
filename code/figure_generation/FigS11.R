@@ -1,9 +1,9 @@
 # ============================================================
 # FigS13.R —— Figure S13（Volcano plot of the limma analysis；单面板）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS13）
-# 运行：cd manuscript && Rscript code/FigS13.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS13）
+# 运行：Rscript code/figure_generation/FigS13.R
 # 输出：figures/FigS13.pdf / .png
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS13.R
+# 本机绝对路径：<repository_root>/manuscript/code/FigS13.R
 # ============================================================
 
 rm(list = ls())
@@ -12,8 +12,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 d <- readxl::read_excel(sd_file, sheet = "FigS13", skip = 2) %>%
   dplyr::mutate(stage = factor(stage, levels = c("tillering", "flowering", "filling")),
                 sig = dplyr::case_when(limma_fdr < 0.05 ~ "FDR < 0.05",
@@ -22,8 +22,8 @@ d <- readxl::read_excel(sd_file, sheet = "FigS13", skip = 2) %>%
                 sig = factor(sig, levels = c("FDR < 0.05", "P < 0.05", "n.s.")))
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 
-# 诊断图数值自检：检查 P 值范围与显著性计数（形状结论必须由数字支撑）
-cat("[FigS13] 每期 P<0.05 基因数：\n")
+# 诊断图数值自检：检查 P 值范围and显著性计数（shape结论必须由数字支撑）
+cat("[FigS13] 每期 P<0.05 gene数：\n")
 print(d %>% dplyr::group_by(stage) %>%
         dplyr::summarise(n = dplyr::n(), n_p05 = sum(limma_p < 0.05),
                          n_fdr05 = sum(limma_fdr < 0.05), min_p = min(limma_p), .groups = "drop") %>%

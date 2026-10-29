@@ -1,9 +1,9 @@
 # ============================================================
 # FigS4.R —— Figure S4（Field plant height and 1000-grain weight；单面板）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS4）
-# 运行：cd manuscript && Rscript code/FigS4.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS4）
+# 运行：Rscript code/figure_generation/FigS4.R
 # 输出：figures/FigS4.pdf / .png
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS4.R
+# 本机绝对路径：<repository_root>/manuscript/code/FigS4.R
 # ============================================================
 
 rm(list = ls())
@@ -12,8 +12,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 d <- readxl::read_excel(sd_file, sheet = "FigS4", skip = 2) %>%
   dplyr::mutate(category = factor(category), focal = factor(as.character(focal)),
                 condition = factor(condition, levels = c("Pure", "Mix")))

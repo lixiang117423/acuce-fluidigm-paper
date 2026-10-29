@@ -1,11 +1,11 @@
 # ============================================================
 # _vectorcraft.R —— 组图薄封装（供 Fig*.R 调用）
-# 规则依据：AGENTS「组图（多面板拼 Figure）一律用 VectorCraft」——本文件只做
+# 规则依据：AGENTS「组图（多面板拼 Figure）一律用 VectorCraft」——本file只做
 #   "读布局 → 发 file.new / file.place / text.create → --export"，版面计算交给 VectorCraft。
 # 输入：panels_mm = list(list(path=, rect=c(x,y,w,h), label="A", label_pos=c(x,y)))，单位 mm（原点左上）
 # 输出：out_pdf（矢量）＋ 同名 .png（600 dpi，由同一 PDF 转，保证同源）
 # 本机绝对路径（登记用）：
-#   /Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/_vectorcraft.R
+#   <repository_root>/manuscript/code/_vectorcraft.R
 # ============================================================
 
 MM_TO_PT <- 72 / 25.4
@@ -17,7 +17,7 @@ compose_vectorcraft <- function(panels_mm, width_mm, height_mm, out_pdf,
                                   "/Users/lixiang/tools/vectorcraft/cli-0.12.0/vectorcraft-cli-0.12.0-macos-universal/vectorcraft-cli")) {
   if (!file.exists(cli)) {
     stop("VectorCraft CLI 未找到：", cli,
-         "；请设置环境变量 VECTORCRAFT_CLI 指向 vectorcraft-cli 可执行文件")
+         "；请设置环境变量 VECTORCRAFT_CLI 指向 vectorcraft-cli 可执行file")
   }
   layout <- list(
     width_mm = width_mm, height_mm = height_mm, font = font, label_size = label_size,
@@ -61,7 +61,7 @@ compose_vectorcraft <- function(panels_mm, width_mm, height_mm, out_pdf,
     status <- system(cmd)
     if (status != 0) stop("VectorCraft 导出失败（退出码 ", status, "）")
   }
-  if (!file.exists(out_pdf)) stop("VectorCraft 未生成输出文件：", out_pdf)
+  if (!file.exists(out_pdf)) stop("VectorCraft 未generate输出file：", out_pdf)
 
   png_out <- sub("\\.pdf$", "", out_pdf)
   system2("pdftoppm", c("-r", "600", "-png", "-singlefile", out_pdf, png_out))

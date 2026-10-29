@@ -1,9 +1,9 @@
 # ============================================================
 # FigS16.R —— Figure S16（Relationship between genetic distance and agronomic traits；单面板）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS16；图用 12 个混种组合）
-# 运行：cd manuscript && Rscript code/FigS16.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS16；图用 12 个混种组合）
+# 运行：Rscript code/figure_generation/FigS16.R
 # 输出：figures/FigS16.pdf / .png
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS16.R
+# 本机绝对路径：<repository_root>/manuscript/code/FigS16.R
 # ============================================================
 
 rm(list = ls())
@@ -12,8 +12,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 d <- readxl::read_excel(sd_file, sheet = "FigS16", skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 

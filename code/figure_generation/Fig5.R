@@ -1,6 +1,6 @@
 # ============================================================
 # Fig5_v32.R —— Figure 5（second-round revision）
-# Source Data：source_data/Source_Data_v32.xlsx（Fig5a–Fig5c）
+# Source Data：data/source_data/Source_Data_v45.xlsx（Fig5a–Fig5c）
 # A: pot-level decomposition; B: plot-level yearly field effects;
 # C: plot-level condition x year interaction tests.
 # 运行：cd manuscript && /opt/homebrew/bin/Rscript code/Fig5_v32.R
@@ -13,8 +13,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data_v32.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {

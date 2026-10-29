@@ -1,9 +1,9 @@
 # ============================================================
 # FigS8.R —— Figure S8（Pot-level clustering and design decomposition；2 个子图 a、b）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS8a、FigS8b）
-# 运行：cd manuscript && Rscript code/FigS8.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS8a、FigS8b）
+# 运行：Rscript code/figure_generation/FigS8.R
 # 输出：figures/FigS8.pdf / .png；面板 figures/panels/FigS8a–b.pdf
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS8.R
+# 本机绝对路径：<repository_root>/manuscript/code/FigS8.R
 # ============================================================
 
 rm(list = ls())
@@ -12,8 +12,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {
@@ -37,7 +37,7 @@ p8a <- d8a %>%
   ggplot2::geom_text(aes(label = lab), position = ggplot2::position_dodge(width = 0.7),
                      vjust = -0.4, size = 2.5) +
   bioRtools::scale_fill_research() +
-  # 2026-10-19：旋转 y 轴标题顶端被切 → 缩短 + 缩小字号 + 留边距
+  # 2026-10-19：旋转 y 轴title顶端被切 → 缩短 + 缩小字号 + 留边距
   ggplot2::labs(x = NULL, y = "P value (Pure vs Mix)", fill = "Disease") +
   bioRtools::theme_prism() +
   ggplot2::theme(axis.text.x = ggplot2::element_text(size = 7, angle = 30, hjust = 1, vjust = 1),

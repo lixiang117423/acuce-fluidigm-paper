@@ -1,10 +1,10 @@
 # ============================================================
 # FigS3.R —— Figure S3（VIP genes and genetic distance；单面板，无面板字母）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS3）
-# 运行：cd manuscript && Rscript code/FigS3.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS3）
+# 运行：Rscript code/figure_generation/FigS3.R
 # 输出：figures/FigS3.pdf / .png；面板 figures/panels/FigS3.pdf
-# 统计：每基因 × 每时期对遗传距离做 Pearson 相关（12 个混种组合），FDR 按时期校正
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS3.R
+# statistics：每gene × 每时期对遗传距离做 Pearson 相关（12 个混种组合），FDR 按时期correction
+# 本机绝对路径：<repository_root>/manuscript/code/FigS3.R
 # ============================================================
 
 rm(list = ls())
@@ -13,8 +13,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 d <- readxl::read_excel(sd_file, sheet = "FigS3", skip = 2) %>%
   dplyr::mutate(stage = factor(stage, levels = c("tillering", "flowering", "filling")),
                 gene = factor(gene, levels = unique(gene))) %>%

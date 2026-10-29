@@ -1,10 +1,10 @@
 # ============================================================
 # Fig3_v32.R —— Figure 3（second-round revision; per-pathway gene rows and fixed group colours）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：Fig3a、Fig3b）
-# 运行：cd manuscript && Rscript code/Fig3.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：Fig3a、Fig3b）
+# 运行：Rscript code/figure_generation/Fig3.R
 # 输出：figures/Fig3.pdf / .png；面板 figures/panels/Fig3a–b.pdf
 # 软件：R 4.6.1；ggplot2；bioRtools::theme_prism()；set.seed(12345)
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/Fig3.R
+# 本机绝对路径：<repository_root>/manuscript/code/Fig3.R
 # ============================================================
 
 rm(list = ls())
@@ -13,8 +13,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data_v32.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {
@@ -23,7 +23,7 @@ save_panel <- function(p, name, w_cm, h_cm) {
 }
 stage_levels <- c("tillering", "flowering", "filling")
 
-# 3A：防御基因热图（combo × gene，值是每个组合内的 0-1 缩放表达）
+# 3A：防御gene热图（combo × gene，值是每个组合内的 0-1 缩放expression）
 d3a <- rd("Fig3a") %>%
   dplyr::mutate(stage = factor(stage, levels = stage_levels),
                 process = factor(process, levels = c("Defense", "Jasmonic acid", "Salicylic acid")),
@@ -40,7 +40,7 @@ p3a <- d3a %>%
   bioRtools::theme_prism() +
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5, size = 5.5),
                  axis.text.y = ggplot2::element_text(size = 5.2, face = "italic"),
-                 # 2026-10-19：轴标题左端曾越出纸边 2.6 pt（"Fo" 被切）→ 字号 7.5 → 7 + 左/下边距
+                 # 2026-10-19：轴title左端曾越出纸边 2.6 pt（"Fo" 被切）→ 字号 7.5 → 7 + 左/下边距
                  axis.title.x = ggplot2::element_text(size = 7),
                  plot.margin = ggplot2::margin(2, 2, 3, 8),
                  strip.text = ggplot2::element_text(size = 6, face = "bold"),
@@ -50,7 +50,7 @@ p3a <- d3a %>%
                  legend.text = ggplot2::element_text(size = 5.5))
 save_panel(p3a, "Fig3a", 17.0, 14.5)
 
-# 3B：每样本防御分数（Mix vs Pure，三时期）
+# 3B：每sample防御分数（Mix vs Pure，three_stages）
 d3b <- rd("Fig3b") %>%
   dplyr::mutate(stage = factor(stage, levels = stage_levels),
                 group = factor(group, levels = c("Pure", "Mix")))
@@ -70,7 +70,7 @@ p3b <- d3b %>%
   ggplot2::scale_x_discrete(limits = c("Pure", "Mix")) +
   ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = c(0.05, 0.14))) +
   ggplot2::scale_fill_manual(values = c(Pure = "grey85", Mix = "#1e4e8c")) +
-  # 2026-10-19：旋转 y 轴标题两头被切 → 缩短 + 缩小字号 + 上下留边距
+  # 2026-10-19：旋转 y 轴title两头被切 → 缩短 + 缩小字号 + 上下留边距
   ggplot2::labs(x = NULL, y = "Defence pathway score (Z)") +
   bioRtools::theme_prism() +
   ggplot2::theme(legend.position = "none", strip.text = ggplot2::element_text(face = "bold", size = 8),

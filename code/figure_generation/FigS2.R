@@ -1,10 +1,10 @@
 # ============================================================
-# 01_接种与田间病害 / 17_FigureS2_盆级重出.R
+# 01_inoculation_and_field_disease / 17_FigureS2_pot_level_reanalysis.R
 # 作用：按审稿意见，以盆均值重做 Figure S2A–S2F
-# 输入：data/01_分析输入表/01_接种结果_合并表.xlsx
+# 输入：data/processed_inputs/01_inoculation_merged.xlsx
 # 输出：
-#   result/01_接种与田间病害/17_表_接种FigureS2_盆级统计.xlsx
-#   result/08_投稿规格图/FigureS2_v43/07–12_FigureS2A–S2F_盆级*.pdf / .png
+#   result/01_inoculation_and_field_disease/17_表_inoculationFigureS2_盆级statistics.xlsx
+#   result/08_submission_format图/FigureS2_v43/07–12_FigureS2A–S2F_盆级*.pdf / .png
 # ============================================================
 
 rm(list = ls())
@@ -13,11 +13,11 @@ library(tidyverse)
 
 set.seed(12345)
 
-project_root <- "/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理"
-path_in <- file.path(project_root, "data", "01_分析输入表", "01_接种结果_合并表.xlsx")
-out_dir <- file.path(project_root, "result", "01_接种与田间病害")
-out_pub <- file.path(project_root, "result", "08_投稿规格图", "FigureS2_v43r2")
-path_out <- file.path(out_dir, "17b_表_接种FigureS2_盆级统计.xlsx")
+project_root <- normalizePath(getwd())
+path_in <- file.path(project_root, "data", "processed_inputs", "01_inoculation_merged.xlsx")
+out_dir <- file.path(project_root, "result", "01_inoculation_and_field_disease")
+out_pub <- file.path(project_root, "result", "08_submission_format图", "FigureS2_v43r2")
+path_out <- file.path(out_dir, "17b_表_inoculationFigureS2_盆级statistics.xlsx")
 
 stopifnot(file.exists(path_in))
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
@@ -149,12 +149,12 @@ pot %>%
 
 bioRtools::write_data(
   p_a,
-  file = file.path(out_pub, "07_FigureS2A_接种总体_盆均值.pdf"),
+  file = file.path(out_pub, "07_FigureS2A_inoculation总体_盆均值.pdf"),
   width = 8.3, height = 6.0
 )
 bioRtools::write_data(
   p_a,
-  file = file.path(out_pub, "07_FigureS2A_接种总体_盆均值.png"),
+  file = file.path(out_pub, "07_FigureS2A_inoculation总体_盆均值.png"),
   width = 8.3, height = 6.0, dpi = 600
 )
 
@@ -185,12 +185,12 @@ pot %>%
 
 bioRtools::write_data(
   p_b,
-  file = file.path(out_pub, "08_FigureS2B_接种总体_盆均值标准化.pdf"),
+  file = file.path(out_pub, "08_FigureS2B_inoculation总体_盆均值normalized.pdf"),
   width = 8.3, height = 6.0
 )
 bioRtools::write_data(
   p_b,
-  file = file.path(out_pub, "08_FigureS2B_接种总体_盆均值标准化.png"),
+  file = file.path(out_pub, "08_FigureS2B_inoculation总体_盆均值normalized.png"),
   width = 8.3, height = 6.0, dpi = 600
 )
 

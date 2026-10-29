@@ -1,9 +1,9 @@
 # ============================================================
 # FigS12.R —— Figure S12（Shape of the plant height response and change point；3 个子图 a–c）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：FigS12a、FigS12b、FigS12c）
-# 运行：cd manuscript && Rscript code/FigS12.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：FigS12a、FigS12b、FigS12c）
+# 运行：Rscript code/figure_generation/FigS12.R
 # 输出：figures/FigS12.pdf / .png；面板 figures/panels/FigS12a–c.pdf
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/FigS12.R
+# 本机绝对路径：<repository_root>/manuscript/code/FigS12.R
 # ============================================================
 
 rm(list = ls())
@@ -12,8 +12,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {
@@ -45,7 +45,7 @@ p12b <- d12b %>%
   ggplot2::geom_hline(yintercept = 0, linetype = "dashed", color = "grey40") +
   ggplot2::geom_line(color = "#1e4e8c", linewidth = 0.7) +
   ggplot2::geom_point(size = 1.6, color = "#1e4e8c") +
-  # 2026-10-19：旋转 y 轴标题顶端被切 → 缩短 + 缩小字号 + 留边距
+  # 2026-10-19：旋转 y 轴title顶端被切 → 缩短 + 缩小字号 + 留边距
   ggplot2::labs(x = "Candidate change point (day)", y = "Group effect after change") +
   bioRtools::theme_prism() +
   # 注意：theme() 必须写在 theme_prism() 之后，否则会被 theme_prism 的轴设置覆盖

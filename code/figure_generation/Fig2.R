@@ -1,10 +1,10 @@
 # ============================================================
 # Fig2_v32.R —— Figure 2（second-round revision; exploratory ordination without score-test P labels）
-# Source Data：只读 source_data/Source_Data.xlsx（sheet：Fig2a–Fig2e）
-# 运行：cd manuscript && Rscript code/Fig2.R
+# Source Data：只读 data/source_data/Source_Data_v45.xlsx（sheet：Fig2a–Fig2e）
+# 运行：Rscript code/figure_generation/Fig2.R
 # 输出：figures/Fig2.pdf / .png；面板 figures/panels/Fig2a–e.pdf
 # 软件：R 4.6.1；ggplot2；bioRtools::theme_prism()；set.seed(12345)
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/Fig2.R
+# 本机绝对路径：<repository_root>/manuscript/code/Fig2.R
 # ============================================================
 
 rm(list = ls())
@@ -13,8 +13,8 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
-sd_file <- "source_data/Source_Data_v32.xlsx"
+source("code/figure_generation/_vectorcraft.R")
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {
@@ -56,7 +56,7 @@ p2b <- d2b %>%
   ggplot2::stat_ellipse(level = 0.6, type = "norm", linewidth = 0.5) +
   ggplot2::geom_point(size = 3.2) +
   bioRtools::scale_color_research() +
-  # 轴标签取自 PLS-DA 的 R2X（单成分解释率）：p1 = 29.4%、p2 = 10.8%、p3 = 19.1%
+  # 轴标签取自 PLS-DA 的 R2X（单成decomposition释率）：p1 = 29.4%、p2 = 10.8%、p3 = 19.1%
   # （2026-10-19 修：原写 19.1% / 19.0% 是两时期旧模型的残留数值）
   ggplot2::labs(x = "Dim 1 (29.4%)", y = "Dim 2 (10.8%)", color = NULL) +
   bioRtools::theme_prism() +
@@ -98,9 +98,9 @@ p2e <- d2e %>%
                             max.overlaps = 20, seed = 12345) +
   bioRtools::scale_color_research() +
   ggplot2::labs(x = "Dim 1 (29.4%)", y = "Dim 2 (10.8%)", color = "Pathway") +
-  # 2026-10-19：与投稿面板一致——图例由右侧改为置底 3 行（右侧图例曾把 83 mm 面板的绘图区
+  # 2026-10-19：and投稿面板一致——图例由右侧改为置底 3 行（右侧图例曾把 83 mm 面板的plotting区
   #   压到约 47 mm 宽），并关掉面板 clip 防止标签被裁
-  # 2026-10-19：2 列 4 行 + 去掉图例标题（3 列时图例宽过面板，最右列与标题被纸边切掉）
+  # 2026-10-19：2 列 4 行 + 去掉图例title（3 列时图例宽过面板，最右列andtitle被纸边切掉）
   ggplot2::guides(color = ggplot2::guide_legend(nrow = 4, ncol = 2, byrow = TRUE, title = NULL)) +
   ggplot2::coord_cartesian(clip = "off") +
   bioRtools::theme_prism() +

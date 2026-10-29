@@ -1,5 +1,14 @@
 # Changelog
 
+## v47 - 2026-10-29
+
+- Converted every tracked file and folder name to ASCII-only English.
+- Renamed Supplementary Tables S1-S9 with descriptive English filenames.
+- Renamed analysis, figure-generation and reporting scripts to English.
+- Updated manuscript and response declarations to release v47.
+- Updated code paths for processed inputs, Source Data and figure-generation entry points.
+- Kept v46 unchanged in Git history and as a separate release.
+
 ## v46 - 2026-10-29
 
 - Replaced the earlier repository contents with the complete v46 manuscript data and code release.

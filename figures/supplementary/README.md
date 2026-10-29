@@ -1,7 +1,7 @@
 # Supplementary figures v43
 
 - FigureS1: legacy Figure S1; source=`manuscript/figures/FigS1.pdf`
-- FigureS2: rebuilt at pot level; source=`result/08_投稿规格图/50b_FigureS2_组图_v43r2_投稿规格.pdf`
+- FigureS2: rebuilt at pot level; source=`result/08_submission_format图/50b_FigureS2_组图_v43r2_submission_format.pdf`
 - FigureS3: legacy Figure S3; source=`manuscript/figures/FigS3.pdf`
 - FigureS4: legacy Figure S4; source=`manuscript/figures/FigS4.pdf`
 - FigureS5: legacy Figure S5; source=`manuscript/figures/FigS5.pdf`

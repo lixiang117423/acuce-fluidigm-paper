@@ -1,11 +1,11 @@
 # ============================================================
 # Fig1_v32.R —— Figure 1（second-round revision）
-# Source Data：**只读** source_data/Source_Data.xlsx 的 sheet Fig1a–Fig1e
-# 运行：cd manuscript && Rscript code/Fig1.R
+# Source Data：**只读** data/source_data/Source_Data_v45.xlsx 的 sheet Fig1a–Fig1e
+# 运行：Rscript code/figure_generation/Fig1.R
 # 输出：figures/Fig1.pdf（+ figures/Fig1.png）；面板 figures/panels/Fig1a–e.pdf
 # 软件：R 4.6.1；ggplot2；bioRtools::theme_prism()；随机种子 set.seed(12345)
-# 组图：由 code/_vectorcraft.R 调 VectorCraft CLI 完成（版面 rect 见文件末）
-# 本机绝对路径：/Users/lixiang/NutstoreFiles/02.博后相关/02.data/90.fluidigm文章重新整理/manuscript/code/Fig1.R
+# 组图：由 code/_vectorcraft.R 调 VectorCraft CLI 完成（版面 rect 见file末）
+# 本机绝对路径：<repository_root>/manuscript/code/Fig1.R
 # ============================================================
 
 rm(list = ls())
@@ -14,9 +14,9 @@ library(tidyverse)
 
 set.seed(12345)
 
-source("code/_vectorcraft.R")
+source("code/figure_generation/_vectorcraft.R")
 
-sd_file <- "source_data/Source_Data_v32.xlsx"
+sd_file <- "data/source_data/Source_Data_v45.xlsx"
 rd <- function(sheet) readxl::read_excel(sd_file, sheet = sheet, skip = 2)
 dir.create("figures/panels", recursive = TRUE, showWarnings = FALSE)
 save_panel <- function(p, name, w_cm, h_cm) {
