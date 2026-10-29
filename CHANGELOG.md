@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-29 - Manuscript withheld before publication
+
+- Changed the repository from public to private.
+- Removed the manuscript and response letter from the current branch.
+- Purged all manuscript and response files from repository history.
+- Deleted the v46 and v47 GitHub releases and repository tags.
+- Removed the review audit and reporting-history scripts, which are internal
+  manuscript-development records rather than public analysis code.
+- Retained the data, figures, tables and analysis code.
+
 ## v47 - 2026-10-29
 
 - Converted every tracked file and folder name to ASCII-only English.
